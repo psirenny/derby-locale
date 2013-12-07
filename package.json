@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "locale": "*",
-    "lodash": "*",
+    "lodash": "*"
   },
   "description": "A locale module for Derby JS.",
   "keywords": [
