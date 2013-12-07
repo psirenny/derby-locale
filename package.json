@@ -1,0 +1,29 @@
+{
+  "author": "psirenny <djtorres0@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/psirenny/derby-locale/issues"
+  },
+  "dependencies": {
+    "locale": "*",
+    "lodash": "*",
+  },
+  "description": "A locale module for Derby JS.",
+  "keywords": [
+    "derby",
+    "internationalization",
+    "locale",
+    "localization",
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "derby-locale",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/psirenny/derby-locale.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.0"
+}
