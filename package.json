@@ -1,15 +1,20 @@
 {
-  "author": "psirenny <djtorres0@gmail.com>",
+  "author": "Dennis Torres <djtorres0@gmail.com>",
   "bugs": {
     "url": "https://github.com/psirenny/derby-locale/issues"
   },
   "dependencies": {
-    "locale": "*",
-    "lodash": "*"
+    "locale": "0.0.17",
+    "lodash": "^2.4.1"
   },
   "description": "A locale module for Derby JS.",
+  "devDependencies": {
+    "mocha": "^1.21.4",
+    "chai": "^1.9.1"
+  },
   "keywords": [
     "derby",
+    "i18n",
     "internationalization",
     "locale",
     "localization"
@@ -23,7 +28,7 @@
     "url": "git://github.com/psirenny/derby-locale.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test"
   },
   "version": "0.1.1"
 }
