@@ -24,7 +24,7 @@ In your server file, add the middleware:
       // ...
       .use(locale({
         default: 'en',
-        supported: ['en']
+        supported: ['en', 'es']
       }))
 
 Change or add default and supported locales as necessary.
@@ -62,7 +62,7 @@ And then in your view:
 Options
 -------
 
-**default** – Default locale to use. It is blank by default. If blank, the first supported locale will be the default.
+**default** – Default locale to use. If unset, the first supported locale will be the default.
 
 **path** – Default path to locale information. Defaults to `$locale`.
 
@@ -109,13 +109,24 @@ It is created via middleware; however, strategies may be created in app routes a
 
 Strategies are processed in the order they are declared.
 As such, earlier strategies have a greater chance of having one of their locales selected from the list of supported locales.
+
 The ordering of strategies can be re-arranged by setting their `order` property.
 Strategies are sorted in ascending order.
 
-Notes
------
+Client
+------
 
 By default, settings configured in the server middleware are stored on the path `$locale`.  
-Locale objects can be changed client side.
+
+Locale objects may be changed client side as well.
 For instance, you may store an array of supported locales in the database and subscribe to them at `$locale.supported`.
-If the list of supported locales changes then the locale function will update accordingly.
+
+    app.get('/', function (page, model, params, next) {
+      var locales = model.at('locales.supported');
+
+      locales.subscribe(function (err) {
+        if (err) return next(err);
+        model.ref('$locale.supported', locales);
+        page.render();
+      });
+    });
