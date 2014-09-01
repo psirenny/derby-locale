@@ -29,9 +29,18 @@ describe('derby-locale', function () {
         });
       });
 
+      it('should reeturn the default locale', function () {
+        var opts = {default: 'ca', supported: ['es', 'ca']};
+        lib.server.load(opts, function (err, $locale) {
+          var locale = lib.app.locale($locale);
+          locale.should.be.a('string');
+          locale.should.eql('ca');
+        });
+      });
+
       it('should return the best locale', function () {
         var opts = {supported: ['es', 'en_US']};
-        opts.strategies = {test: {preferred: ['en', 'es']}};
+        opts.strategies = {test: {locales: ['en', 'es']}};
         lib.server.load(opts, function (err, $locale) {
           var locale = lib.app.locale($locale);
           locale.should.be.a('string');
@@ -42,8 +51,8 @@ describe('derby-locale', function () {
       it('should order strategies by order num', function () {
         var opts = {supported: ['en', 'es', 'de']};
         opts.strategies = {};
-        opts.strategies.test1 = {order: 2, preferred: ['es', 'en']};
-        opts.strategies.test2 = {order: 1, preferred: ['de']};
+        opts.strategies.test1 = {order: 2, locales: ['es', 'en']};
+        opts.strategies.test2 = {order: 1, locales: ['de']};
         lib.server.load(opts, function (err, $locale) {
           var locale = lib.app.locale($locale);
           locale.should.be.a('string');
@@ -54,8 +63,10 @@ describe('derby-locale', function () {
   });
 
   describe('server', function () {
-    it('should be a function', function () {
-      lib.server.should.be.a('function');
+    describe('middleware', function () {
+      it('should be a function', function () {
+        lib.server.should.be.a('function');
+      });
     });
 
     describe('load', function () {
